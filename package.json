@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-hw-1-cli",
+  "version": "1.0.0",
+  "description": "Repository for homework #1 cli app",
+  "main": "index.js",
+  "scripts": {
+    "start": " node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anatoliy-Mostovoy/nodejs-hw-1-cli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anatoliy-Mostovoy/nodejs-hw-1-cli/issues"
+  },
+  "homepage": "https://github.com/Anatoliy-Mostovoy/nodejs-hw-1-cli#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "dependencies": {
+    "commander": "^8.2.0"
+  }
+}
