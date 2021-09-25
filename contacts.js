@@ -35,12 +35,23 @@ async function getContactById(contactId) {
   }
 }
 
-//   function removeContact(contactId) {
-
-//   }
+async function removeContact(contactId) {
+  try {
+    const contacts = await listContacts();
+    const filterContacts = contacts.filter((contact) => {
+      if (contact.id.toString() !== contactId) {
+        return contact;
+      }
+      return console.log("SORRY, WE CANT FIND THIS CONTACT");
+    });
+    return filterContacts;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 //   function addContact(name, email, phone) {
 
 //   }
 
-module.exports = { listContacts, getContactById };
+module.exports = { listContacts, getContactById, removeContact };

@@ -1,5 +1,9 @@
 const chalk = require("chalk");
-const { listContacts, getContactById } = require("./contacts.js");
+const {
+  listContacts,
+  getContactById,
+  removeContact,
+} = require("./contacts.js");
 const { Command } = require("commander");
 const program = new Command();
 program
@@ -51,7 +55,21 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "remove":
-      // ... id
+      (async () => {
+        try {
+          const contactFiltered = await removeContact(id);
+          if (contactFiltered) {
+            console.log(chalk.blue("ITS YOUR FILTERED CONTACT"));
+            console.log(chalk.blue(`WE WAS DELETED CONTACTS WITH ID = ${id}`));
+            console.table(contactFiltered);
+            return;
+          }
+          console.log(chalk.red("THERE IS NO CONTACTS WITH THIS ID"));
+          return;
+        } catch (err) {
+          console.log(err.message);
+        }
+      })();
       break;
 
     default:
