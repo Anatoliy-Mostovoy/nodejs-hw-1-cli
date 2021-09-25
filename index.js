@@ -3,6 +3,7 @@ const {
   listContacts,
   getContactById,
   removeContact,
+  addContact,
 } = require("./contacts.js");
 const { Command } = require("commander");
 const program = new Command();
@@ -24,11 +25,12 @@ function invokeAction({ action, id, name, email, phone }) {
         try {
           const contacts = await listContacts();
           if (contacts.length <= 0) {
-            return console.log(chalk("SORRY, THERE IS NO CONTACTS"));
+            return console.log(chalk.red("SORRY, THERE ARE NO CONTACTS"));
           }
+          console.log(chalk.red("HERE ARE YOUR CONTACTS"));
           return console.table(contacts);
         } catch (error) {
-          console.log(`SORRY, WE HAVE ERROR: ${error.message}`);
+          console.log(`SORRY, WE HAVE AN ERROR: ${error.message}`);
         }
       })();
       break;
@@ -38,7 +40,7 @@ function invokeAction({ action, id, name, email, phone }) {
         try {
           const contactById = await getContactById(id);
           if (contactById) {
-            console.log(chalk.blue("ITS YOUR CONTACT"));
+            console.log(chalk.blue("THIS IS YOUR CONTACT"));
             console.table(contactById);
             return;
           }
@@ -51,7 +53,15 @@ function invokeAction({ action, id, name, email, phone }) {
       break;
 
     case "add":
-      // ... name email phone
+      (async () => {
+        try {
+          const contacts = await addContact(name, email, phone);
+          console.log(chalk.blue(`YOU HAVE ADDED A NEW CONTACT ${name}`));
+          console.table(contacts);
+        } catch (error) {
+          console.log(error.massage);
+        }
+      })();
       break;
 
     case "remove":
@@ -59,8 +69,8 @@ function invokeAction({ action, id, name, email, phone }) {
         try {
           const contactFiltered = await removeContact(id);
           if (contactFiltered) {
-            console.log(chalk.blue("ITS YOUR FILTERED CONTACT"));
-            console.log(chalk.blue(`WE WAS DELETED CONTACTS WITH ID = ${id}`));
+            console.log(chalk.blue("ITS YOUR FILTERED CONTACTS"));
+            console.log(chalk.blue(`YOU REMOVED A CONTACT WITH ID = ${id}`));
             console.table(contactFiltered);
             return;
           }
