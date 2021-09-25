@@ -1,3 +1,4 @@
+const { listContacts } = require("./contacts.js");
 const { Command } = require("commander");
 const program = new Command();
 program
@@ -14,7 +15,21 @@ const argv = program.opts();
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      // ...
+      (async () => {
+        try {
+          const contacts = await listContacts();
+          if (contacts.length <= 0) {
+            console.log("SORRY, THERE IS NO CONTACTS");
+          }
+          return console.table(contacts);
+        } catch (error) {
+          console.log(`SORRY, WE HAVE ERROR: ${error.message}`);
+        }
+      })();
+      // listContacts()
+      //   .then((contacts) => console.table(contacts))
+      //   .catch(console.error);
+
       break;
 
     case "get":
