@@ -39,12 +39,11 @@ async function getContactById(contactId) {
 async function removeContact(contactId) {
   try {
     const contacts = await listContacts();
-    const filterContacts = contacts.filter((contact) => {
-      if (contact.id.toString() !== contactId) {
-        return contact;
-      }
-      return console.log("SORRY, WE CANT FIND THIS CONTACT");
-    });
+    const filterContacts = contacts.filter(
+      (contact) => contact.id.toString() !== contactId
+    );
+    await fs.writeFile(contactsPath, JSON.stringify(filterContacts));
+
     return filterContacts;
   } catch (error) {
     console.log(error.message);
