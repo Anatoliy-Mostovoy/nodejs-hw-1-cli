@@ -19,13 +19,21 @@ async function listContacts() {
     const parseContacts = JSON.parse(readContacts);
     return parseContacts;
   } catch (error) {
-    console.log("SORRY, TRY AGAIN");
+    console.log(error.message);
   }
 }
 
-//   function getContactById(contactId) {
-
-//   }
+async function getContactById(contactId) {
+  try {
+    const contacts = await listContacts();
+    const findContact = contacts.find(
+      (contact) => contact.id.toString() === contactId
+    );
+    return findContact;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 //   function removeContact(contactId) {
 
@@ -35,4 +43,4 @@ async function listContacts() {
 
 //   }
 
-module.exports = { listContacts };
+module.exports = { listContacts, getContactById };

@@ -1,4 +1,5 @@
-const { listContacts } = require("./contacts.js");
+const chalk = require("chalk");
+const { listContacts, getContactById } = require("./contacts.js");
 const { Command } = require("commander");
 const program = new Command();
 program
@@ -19,21 +20,30 @@ function invokeAction({ action, id, name, email, phone }) {
         try {
           const contacts = await listContacts();
           if (contacts.length <= 0) {
-            console.log("SORRY, THERE IS NO CONTACTS");
+            return console.log(chalk("SORRY, THERE IS NO CONTACTS"));
           }
           return console.table(contacts);
         } catch (error) {
           console.log(`SORRY, WE HAVE ERROR: ${error.message}`);
         }
       })();
-      // listContacts()
-      //   .then((contacts) => console.table(contacts))
-      //   .catch(console.error);
-
       break;
 
     case "get":
-      // ... id
+      (async () => {
+        try {
+          const contactById = await getContactById(id);
+          if (contactById) {
+            console.log(chalk.blue("ITS YOUR CONTACT"));
+            console.table(contactById);
+            return;
+          }
+          console.log(chalk.red("THERE IS NO CONTACTS WITH THIS ID"));
+          return;
+        } catch (err) {
+          console.log(err.message);
+        }
+      })();
       break;
 
     case "add":

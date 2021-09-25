@@ -21,6 +21,7 @@
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "chalk": "^4.1.2",
     "commander": "^8.2.0"
   }
 }
