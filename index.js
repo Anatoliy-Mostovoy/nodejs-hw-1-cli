@@ -27,7 +27,7 @@ function invokeAction({ action, id, name, email, phone }) {
           if (contacts.length <= 0) {
             return console.log(chalk.red("SORRY, THERE ARE NO CONTACTS"));
           }
-          console.log(chalk.red("HERE ARE YOUR CONTACTS"));
+          console.log(chalk.blue("HERE ARE YOUR CONTACTS"));
           return console.table(contacts);
         } catch (error) {
           console.log(`SORRY, WE HAVE AN ERROR: ${error.message}`);
@@ -47,7 +47,7 @@ function invokeAction({ action, id, name, email, phone }) {
           console.log(chalk.red("THERE IS NO CONTACTS WITH THIS ID"));
           return;
         } catch (err) {
-          console.log(err.message);
+          console.log(`SORRY, WE HAVE AN ERROR: ${error.message}`);
         }
       })();
       break;
@@ -59,7 +59,7 @@ function invokeAction({ action, id, name, email, phone }) {
           console.log(chalk.blue(`YOU HAVE ADDED A NEW CONTACT ${name}`));
           console.table(contacts);
         } catch (error) {
-          console.log(error.massage);
+          console.log(`SORRY, WE HAVE AN ERROR: ${error.message}`);
         }
       })();
       break;
@@ -77,7 +77,7 @@ function invokeAction({ action, id, name, email, phone }) {
           console.log(chalk.red("THERE IS NO CONTACTS WITH THIS ID"));
           return;
         } catch (err) {
-          console.log(err.message);
+          console.log(`SORRY, WE HAVE AN ERROR: ${error.message}`);
         }
       })();
       break;

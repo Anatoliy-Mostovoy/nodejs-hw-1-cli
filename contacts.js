@@ -43,7 +43,6 @@ async function removeContact(contactId) {
       (contact) => contact.id.toString() !== contactId
     );
     await fs.writeFile(contactsPath, JSON.stringify(filterContacts));
-
     return filterContacts;
   } catch (error) {
     console.log(error.message);
