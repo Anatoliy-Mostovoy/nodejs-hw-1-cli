@@ -11,4 +11,4 @@ https://monosnap.com/file/whyN1UJFtL9cEcxuqhSANo1R65lPRx
 https://monosnap.com/file/WwTke2V5J2kdrPL3WtCm3FOzl3sVzv
 
 # Удаляем контакт
-node index.js --action remove --id=3
+https://monosnap.com/file/yrIIE7bGXEnvTGnbQ5Rys0vpZqdIGM
