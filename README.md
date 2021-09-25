@@ -5,10 +5,10 @@ Repository for homework #1 cli app
 https://monosnap.com/file/3DdNjirfb778ZNnuQY1sUoo73LlgNX
 
 # Получаем контакт по id
-node index.js --action get --id 5
+https://monosnap.com/file/whyN1UJFtL9cEcxuqhSANo1R65lPRx
 
 # Добавялем контакт
-node index.js --action add --name Mango --email mango@gmail.com --phone 322-22-22
+https://monosnap.com/file/WwTke2V5J2kdrPL3WtCm3FOzl3sVzv
 
 # Удаляем контакт
 node index.js --action remove --id=3
