@@ -6,17 +6,7 @@ const contactsPath = path.join(__dirname, "db", "contacts.json");
 
 async function listContacts() {
   try {
-    const readContacts = await fs.readFile(
-      contactsPath,
-      "utf-8",
-      (error, data) => {
-        if (error) {
-          return console.log("There is no contacts in this path");
-        }
-        return data;
-      }
-    );
-
+    const readContacts = await fs.readFile(contactsPath, "utf-8");
     const parseContacts = JSON.parse(readContacts);
     return parseContacts;
   } catch (error) {
@@ -54,7 +44,7 @@ async function addContact(name, email, phone) {
     const contacts = await listContacts();
     const newContact = { id: crypto.randomUUID(), name, email, phone };
     contacts.push(newContact);
-    await fs.writeFile(contactsPath, JSON.stringify(contacts));
+    await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2)); //todo  одбавяет контактс двумя отсутпами //
     return contacts;
   } catch (error) {
     console.log(error.message);
